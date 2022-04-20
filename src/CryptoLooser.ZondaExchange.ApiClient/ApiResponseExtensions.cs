@@ -1,4 +1,6 @@
-﻿namespace CryptoLooser.ZondaExchange.ApiClient.DTOs;
+﻿using CryptoLooser.ZondaExchange.ApiClient.DTOs;
+
+namespace CryptoLooser.ZondaExchange.ApiClient;
 
 internal static class ApiResponseExtensions
 {

@@ -2,8 +2,8 @@
 
 public record CandlestickChartEntry(
     DateTime Timestamp,
-    decimal OpeningPrice,
-    decimal ClosingPrice,
-    decimal HighestPrice,
-    decimal LowestPrice,
-    decimal GeneratedVolume);
+    double OpeningPrice,
+    double ClosingPrice,
+    double HighestPrice,
+    double LowestPrice,
+    double GeneratedVolume);

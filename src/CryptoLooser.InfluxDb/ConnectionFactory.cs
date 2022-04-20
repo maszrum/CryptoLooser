@@ -17,9 +17,9 @@ public class ConnectionFactory
         var queryApi = client.GetQueryApi();
 
         return new Connection<QueryApi>(
-            client, 
-            queryApi, 
-            _configuration.Bucket, 
+            client,
+            queryApi,
+            _configuration.Bucket,
             _configuration.Organization);
     }
 
@@ -27,14 +27,26 @@ public class ConnectionFactory
     {
         var client = CreateClient();
         var writeApi = client.GetWriteApiAsync();
-        
+
         return new Connection<WriteApiAsync>(
-            client, 
-            writeApi, 
-            _configuration.Bucket, 
+            client,
+            writeApi,
+            _configuration.Bucket,
             _configuration.Organization);
     }
 
-    private InfluxDBClient CreateClient() => 
+    public Connection<DeleteApi> OpenDeleteApi()
+    {
+        var client = CreateClient();
+        var writeApi = client.GetDeleteApi();
+
+        return new Connection<DeleteApi>(
+            client,
+            writeApi,
+            _configuration.Bucket,
+            _configuration.Organization);
+    }
+
+    private InfluxDBClient CreateClient() =>
         InfluxDBClientFactory.Create(_configuration.Address, _configuration.Token);
 }

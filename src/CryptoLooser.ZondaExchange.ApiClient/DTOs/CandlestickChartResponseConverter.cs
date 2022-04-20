@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Globalization;
 using System.Text.Json;
 using CryptoLooser.Core.Models;
 
@@ -24,11 +25,11 @@ internal class CandlestickChartResponseConverter
 
         return new CandlestickChartEntry(
             Timestamp: timestamp,
-            OpeningPrice: GetDecimalFromProperty(dataElement, "o"),
-            ClosingPrice: GetDecimalFromProperty(dataElement, "c"),
-            HighestPrice: GetDecimalFromProperty(dataElement, "h"),
-            LowestPrice: GetDecimalFromProperty(dataElement, "l"),
-            GeneratedVolume: GetDecimalFromProperty(dataElement, "v"));
+            OpeningPrice: GetDoubleFromProperty(dataElement, "o"),
+            ClosingPrice: GetDoubleFromProperty(dataElement, "c"),
+            HighestPrice: GetDoubleFromProperty(dataElement, "h"),
+            LowestPrice: GetDoubleFromProperty(dataElement, "l"),
+            GeneratedVolume: GetDoubleFromProperty(dataElement, "v"));
     }
 
     private static DateTime GetTimestampFromJsonElement(JsonElement jsonElement)
@@ -42,13 +43,13 @@ internal class CandlestickChartResponseConverter
         return timestamp;
     }
 
-    private static decimal GetDecimalFromProperty(JsonElement element, string propertyName)
+    private static double GetDoubleFromProperty(JsonElement element, string propertyName)
     {
         var property = element.GetProperty(propertyName);
 
-        var decimalAsString = property.GetString() ?? throw new InvalidOperationException(
+        var doubleAsString = property.GetString() ?? throw new InvalidOperationException(
             $"Ivalid element value, value kind: {property.ValueKind}");
 
-        return decimal.Parse(decimalAsString);
+        return double.Parse(doubleAsString, CultureInfo.InvariantCulture);
     }
 }

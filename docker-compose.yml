@@ -7,6 +7,8 @@ services:
       dockerfile: ./infrastructure/influxdb/Dockerfile
     ports:
       - "8086:8086"
+    volumes:
+      - influxdata:/root/.influxdbv2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=crypto
@@ -14,3 +16,32 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=maszrum
       - DOCKER_INFLUXDB_INIT_BUCKET=bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=cryptotoken
+  mongodb:
+    build:
+      context: .
+      dockerfile: ./infrastructure/mongodb/Dockerfile
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=crypto
+      - MONGO_INITDB_ROOT_PASSWORD=YOUlooser
+  mongo-express:
+    build:
+      context: .
+      dockerfile: ./infrastructure/mongo-express/Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    restart: on-failure
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=crypto
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=YOUlooser
+
+volumes:
+  influxdata: {}
+  mongodata: {}

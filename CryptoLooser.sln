@@ -8,6 +8,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.ZondaExchange.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.ZondaExchange.ApiClient.Tests", "tests\CryptoLooser.ZondaExchange.ApiClient.Tests\CryptoLooser.ZondaExchange.ApiClient.Tests.csproj", "{4116755D-AA46-4320-9053-2B958B2B2D22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Core", "src\CryptoLooser.Core\CryptoLooser.Core.csproj", "{D67D8C6C-4AAA-4833-B063-4C9A5862D963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.SqliteDatabase", "src\CryptoLooser.SqliteDatabase\CryptoLooser.SqliteDatabase.csproj", "{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Cli", "src\CryptoLooser.Cli\CryptoLooser.Cli.csproj", "{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +22,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{82E1C39E-9090-403D-A5DD-686B05A4A2F7} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 		{4116755D-AA46-4320-9053-2B958B2B2D22} = {EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}
+		{D67D8C6C-4AAA-4833-B063-4C9A5862D963} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
+		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
+		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{82E1C39E-9090-403D-A5DD-686B05A4A2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -26,5 +35,17 @@ Global
 		{4116755D-AA46-4320-9053-2B958B2B2D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4116755D-AA46-4320-9053-2B958B2B2D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4116755D-AA46-4320-9053-2B958B2B2D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D67D8C6C-4AAA-4833-B063-4C9A5862D963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67D8C6C-4AAA-4833-B063-4C9A5862D963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67D8C6C-4AAA-4833-B063-4C9A5862D963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67D8C6C-4AAA-4833-B063-4C9A5862D963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

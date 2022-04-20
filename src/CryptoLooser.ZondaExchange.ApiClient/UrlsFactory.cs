@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using CryptoLooser.Core.Models;
 
 namespace CryptoLooser.ZondaExchange.ApiClient;
 
@@ -19,7 +20,7 @@ internal class UrlsFactory
     public string GetBaseUrl() => _baseUrl;
 
     public string GetCandlestickChartUrl(
-        string marketCode,
+        MarketCode marketCode,
         ChartResolution resolution,
         DateTime from,
         DateTime to)
@@ -30,7 +31,7 @@ internal class UrlsFactory
 
         return new StringBuilder()
             .Append("rest/trading/candle/history/")
-            .Append(marketCode)
+            .Append(marketCode.ToString())
             .Append('/')
             .Append(resolutionInSeconds)
             .Append("?from=")

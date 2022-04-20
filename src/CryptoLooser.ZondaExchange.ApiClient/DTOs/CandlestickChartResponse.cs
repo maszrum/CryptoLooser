@@ -1,7 +1,6 @@
 ﻿namespace CryptoLooser.ZondaExchange.ApiClient.DTOs;
 
-internal class CandlestickChartResponse
+internal class CandlestickChartResponse : ApiResponse
 {
-    public string Status { get; set; }
-    public List<List<object>> Items { get; set; }
+    public List<List<object>> Items { get; set; } = null!;
 }

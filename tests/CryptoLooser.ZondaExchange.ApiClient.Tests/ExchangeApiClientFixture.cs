@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
+﻿using CryptoLooser.Core.Models;
+using NUnit.Framework;
 using RestSharp;
 
 namespace CryptoLooser.ZondaExchange.ApiClient.Tests;
 
 [TestFixture]
-public class ExchangeApiClientTests
+public class ExchangeApiClientFixture
 {
     private const string ExchangeApiBase = "https://api.zonda.exchange";
 
@@ -30,7 +31,7 @@ public class ExchangeApiClientTests
         var dateTo = dateFrom.AddDays(10);
 
         var candlestickChartData = await client.GetCandlestickChartData(
-            "BTC-PLN",
+            MarketCode.Parse("BTC-PLN"),
             ChartResolution.OneDay,
             dateFrom,
             dateTo);
@@ -60,7 +61,7 @@ public class ExchangeApiClientTests
         var dateTo = dateFrom.AddHours(10);
 
         var candlestickChartData = await client.GetCandlestickChartData(
-            "ETH-PLN",
+            MarketCode.Parse("ETH-PLN"),
             ChartResolution.FifteenMinutes,
             dateFrom,
             dateTo);

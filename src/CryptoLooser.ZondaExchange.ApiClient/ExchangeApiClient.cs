@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using RestSharp;
+using CryptoLooser.Core.Models;
 using CryptoLooser.ZondaExchange.ApiClient.DTOs;
 
 namespace CryptoLooser.ZondaExchange.ApiClient;
@@ -18,7 +19,7 @@ public class ExchangeApiClient
     }
 
     public async Task<ImmutableArray<CandlestickChartEntry>> GetCandlestickChartData(
-        string marketCode,
+        MarketCode marketCode,
         ChartResolution resolution,
         DateTime from,
         DateTime to)
@@ -32,6 +33,8 @@ public class ExchangeApiClient
             throw new InvalidOperationException(
                 "Cannot get candlestick chart data.");
         }
+
+        response.EnsureStatusOk();
 
         var converter = new CandlestickChartResponseConverter();
         var entries = converter.ConvertToEntries(response);

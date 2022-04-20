@@ -1,4 +1,4 @@
-﻿namespace CryptoLooser.ZondaExchange.ApiClient;
+﻿namespace CryptoLooser.Core.Models;
 
 public record CandlestickChartEntry(
     DateTime Timestamp,

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Text.Json;
+using CryptoLooser.Core.Models;
 
 namespace CryptoLooser.ZondaExchange.ApiClient.DTOs;
 

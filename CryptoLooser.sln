@@ -1,5 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0C89A2B2-453F-45BA-ABE6-B643C7CDC728}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}"
@@ -14,6 +19,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.SqliteDatabase
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Cli", "src\CryptoLooser.Cli\CryptoLooser.Cli.csproj", "{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.SqliteDatabase.Tests", "tests\CryptoLooser.SqliteDatabase.Tests\CryptoLooser.SqliteDatabase.Tests.csproj", "{6F129727-FA6B-4D78-80D2-8433AAF57941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Core.Tests", "tests\CryptoLooser.Core.Tests\CryptoLooser.Core.Tests.csproj", "{54C06BF3-2F4A-4466-A004-B4C9ED025B32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.InfluxDb", "src\CryptoLooser.InfluxDb\CryptoLooser.InfluxDb.csproj", "{80D61AFE-5D9E-423F-81E6-CE32D581F63D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.InfluxDb.Tests", "tests\CryptoLooser.InfluxDb.Tests\CryptoLooser.InfluxDb.Tests.csproj", "{C3DC5365-E9C1-4E13-A0A8-D654895BFD13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +38,10 @@ Global
 		{D67D8C6C-4AAA-4833-B063-4C9A5862D963} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 		{5F8EF2DF-28FE-4FDD-8C7D-FD5ACC7255C1} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
+		{6F129727-FA6B-4D78-80D2-8433AAF57941} = {EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}
+		{54C06BF3-2F4A-4466-A004-B4C9ED025B32} = {EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}
+		{80D61AFE-5D9E-423F-81E6-CE32D581F63D} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
+		{C3DC5365-E9C1-4E13-A0A8-D654895BFD13} = {EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{82E1C39E-9090-403D-A5DD-686B05A4A2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +64,21 @@ Global
 		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058BB245-4DA1-41AD-9FD0-C7DFB57A7FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F129727-FA6B-4D78-80D2-8433AAF57941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F129727-FA6B-4D78-80D2-8433AAF57941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F129727-FA6B-4D78-80D2-8433AAF57941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F129727-FA6B-4D78-80D2-8433AAF57941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C06BF3-2F4A-4466-A004-B4C9ED025B32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C06BF3-2F4A-4466-A004-B4C9ED025B32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C06BF3-2F4A-4466-A004-B4C9ED025B32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C06BF3-2F4A-4466-A004-B4C9ED025B32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D61AFE-5D9E-423F-81E6-CE32D581F63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D61AFE-5D9E-423F-81E6-CE32D581F63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D61AFE-5D9E-423F-81E6-CE32D581F63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D61AFE-5D9E-423F-81E6-CE32D581F63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DC5365-E9C1-4E13-A0A8-D654895BFD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DC5365-E9C1-4E13-A0A8-D654895BFD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DC5365-E9C1-4E13-A0A8-D654895BFD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DC5365-E9C1-4E13-A0A8-D654895BFD13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

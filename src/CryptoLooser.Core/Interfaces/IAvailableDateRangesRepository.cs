@@ -3,7 +3,7 @@ using CryptoLooser.Core.Models;
 
 namespace CryptoLooser.Core.Interfaces;
 
-public interface IAvailableDateRanges
+public interface IAvailableDateRangesRepository
 {
     Task<ImmutableArray<DateRange>> GetAvailableDateRanges(
         MarketCode marketCode, 

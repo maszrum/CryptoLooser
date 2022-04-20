@@ -3,10 +3,11 @@ using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Core.Flux.Domain;
 using InfluxDB.Client.Writes;
 using CryptoLooser.Core.Models;
+using CryptoLooser.Core.Interfaces;
 
 namespace CryptoLooser.InfluxDb;
 
-public class ExchangeHistoryRepository
+public class ExchangeHistoryRepository : IExchangeHistoryRepository
 {
     private readonly ConnectionFactory _connectionFactory;
 
@@ -58,12 +59,12 @@ public class ExchangeHistoryRepository
             .Build();
 
         var tables = await connection.Api.QueryAsync(query, connection.Organization);
-        
+
         if (tables.Count == 0)
         {
             return new CandlestickChart(
-                marketCode, 
-                resolution, 
+                marketCode,
+                resolution,
                 ImmutableArray<CandlestickChartEntry>.Empty);
         }
 
@@ -72,11 +73,11 @@ public class ExchangeHistoryRepository
             throw new InvalidOperationException(
                 $"Received invalid data from database. It has {tables.Count} tables count.");
         }
-        
+
         var entries = tables[0].Records
             .Select(RecordToEntry)
             .ToImmutableArray();
-        
+
         return new CandlestickChart(
             marketCode,
             resolution,
@@ -97,7 +98,7 @@ public class ExchangeHistoryRepository
             .Field("generated_volume", entry.GeneratedVolume)
             .Timestamp(entry.Timestamp.ToUniversalTime(), WritePrecision.S);
     }
-    
+
     private static CandlestickChartEntry RecordToEntry(FluxRecord record)
     {
         return new CandlestickChartEntry(

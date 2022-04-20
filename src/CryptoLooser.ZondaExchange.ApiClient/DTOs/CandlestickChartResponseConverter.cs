@@ -44,10 +44,10 @@ internal class CandlestickChartResponseConverter
     private static decimal GetDecimalFromProperty(JsonElement element, string propertyName)
     {
         var property = element.GetProperty(propertyName);
-        
+
         var decimalAsString = property.GetString() ?? throw new InvalidOperationException(
             $"Ivalid element value, value kind: {property.ValueKind}");
-        
+
         return decimal.Parse(decimalAsString);
     }
 }

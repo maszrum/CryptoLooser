@@ -32,7 +32,7 @@ public class ExchangeApiClient
             throw new InvalidOperationException(
                 "Cannot get candlestick chart data.");
         }
-        
+
         var converter = new CandlestickChartResponseConverter();
         var entries = converter.ConvertToEntries(response);
 

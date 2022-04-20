@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mongo-express", "mongo-expr
 		infrastructure\mongo-express\Dockerfile = infrastructure\mongo-express\Dockerfile
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Configuration", "src\CryptoLooser.Configuration\CryptoLooser.Configuration.csproj", "{4C01989A-7CBA-46E1-8192-B29BCB220FB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,7 @@ Global
 		{69F12E3F-ED9F-4661-8006-97339AFA71F4} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 		{7D260D88-B01F-4F20-8D08-9CB931614488} = {EC978D91-D4D0-44BE-8FA3-CF8678EA5A9D}
 		{F483203E-54CF-468C-A13F-8E08294E58C3} = {1A2363D5-B3E2-4F74-8DF8-791EA9D30648}
+		{4C01989A-7CBA-46E1-8192-B29BCB220FB7} = {D6A02F1E-6DAB-4629-9FA1-534A1291C5B2}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{82E1C39E-9090-403D-A5DD-686B05A4A2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -101,5 +104,9 @@ Global
 		{7D260D88-B01F-4F20-8D08-9CB931614488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D260D88-B01F-4F20-8D08-9CB931614488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D260D88-B01F-4F20-8D08-9CB931614488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C01989A-7CBA-46E1-8192-B29BCB220FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C01989A-7CBA-46E1-8192-B29BCB220FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C01989A-7CBA-46E1-8192-B29BCB220FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C01989A-7CBA-46E1-8192-B29BCB220FB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -13,7 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CryptoLooser.Configuration\CryptoLooser.Configuration.csproj" />
     <ProjectReference Include="..\..\src\CryptoLooser.MongoDb\CryptoLooser.MongoDb.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

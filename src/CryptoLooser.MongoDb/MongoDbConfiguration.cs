@@ -1,5 +1,10 @@
 ﻿namespace CryptoLooser.MongoDb;
 
-public record MongoDbConfiguration(
-    string ConnectionString, 
-    string Database);
+public class MongoDbConfiguration
+{
+    public const string Section = "Mongo";
+
+    public string ConnectionString { get; init; } = null!;
+
+    public string Database { get; init; } = null!;
+}

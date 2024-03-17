@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Core", "CryptoLooser.Core\CryptoLooser.Core.csproj", "{AB106FB7-DF59-4153-B787-2555A0540C32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Core.UnitTests", "CryptoLooser.Core.UnitTests\CryptoLooser.Core.UnitTests.csproj", "{74F814CB-1158-4C39-9003-56AD57819092}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "market-data", "market-data", "{A3D107E1-126E-4815-9DB4-22EB9EAEAF5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ethusdt", "ethusdt", "{36478D24-0020-43B6-B595-70C36A94403A}"
+	ProjectSection(SolutionItems) = preProject
+		market-data\ethusdt\ETHUSDT-1h-2023-03.zip = market-data\ethusdt\ETHUSDT-1h-2023-03.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-04.zip = market-data\ethusdt\ETHUSDT-1h-2023-04.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-05.zip = market-data\ethusdt\ETHUSDT-1h-2023-05.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-06.zip = market-data\ethusdt\ETHUSDT-1h-2023-06.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-07.zip = market-data\ethusdt\ETHUSDT-1h-2023-07.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-08.zip = market-data\ethusdt\ETHUSDT-1h-2023-08.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-09.zip = market-data\ethusdt\ETHUSDT-1h-2023-09.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-10.zip = market-data\ethusdt\ETHUSDT-1h-2023-10.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-11.zip = market-data\ethusdt\ETHUSDT-1h-2023-11.zip
+		market-data\ethusdt\ETHUSDT-1h-2023-12.zip = market-data\ethusdt\ETHUSDT-1h-2023-12.zip
+		market-data\ethusdt\ETHUSDT-1h-2024-01.zip = market-data\ethusdt\ETHUSDT-1h-2024-01.zip
+		market-data\ethusdt\ETHUSDT-1h-2024-02.zip = market-data\ethusdt\ETHUSDT-1h-2024-02.zip
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Cli", "CryptoLooser.Cli\CryptoLooser.Cli.csproj", "{66B7562A-DA8A-4CDB-BEE5-AB3C3BCEC1F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".", ".", "{751B4BD9-45F8-4A4B-936B-36B8E6DEF79D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB106FB7-DF59-4153-B787-2555A0540C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB106FB7-DF59-4153-B787-2555A0540C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB106FB7-DF59-4153-B787-2555A0540C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB106FB7-DF59-4153-B787-2555A0540C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F814CB-1158-4C39-9003-56AD57819092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F814CB-1158-4C39-9003-56AD57819092}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F814CB-1158-4C39-9003-56AD57819092}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F814CB-1158-4C39-9003-56AD57819092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66B7562A-DA8A-4CDB-BEE5-AB3C3BCEC1F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66B7562A-DA8A-4CDB-BEE5-AB3C3BCEC1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66B7562A-DA8A-4CDB-BEE5-AB3C3BCEC1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66B7562A-DA8A-4CDB-BEE5-AB3C3BCEC1F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36478D24-0020-43B6-B595-70C36A94403A} = {A3D107E1-126E-4815-9DB4-22EB9EAEAF5B}
+	EndGlobalSection
+EndGlobal

@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
+using System.Reflection;
 using System.Text;
+using CryptoLooser.Core.NeuralNetwork;
 
 namespace CryptoLooser.Cli;
 
@@ -27,16 +29,26 @@ internal class ChromosomeExporter(
 
     private static string FormatSettings(NeuralNetworkSettings neuralNetworkSettings)
     {
-        return new StringBuilder()
+        var sb = new StringBuilder()
             .AppendLine("# Neural network parameters:")
             .Append("# ")
             .Append(nameof(neuralNetworkSettings.HiddenLayerNeuronsCount))
             .Append(" = ")
-            .AppendLine(neuralNetworkSettings.HiddenLayerNeuronsCount.ToString())
-            .Append("# ")
-            .Append(nameof(neuralNetworkSettings.SeriesSize))
-            .Append(" = ")
-            .AppendLine(neuralNetworkSettings.SeriesSize.ToString())
+            .AppendLine(neuralNetworkSettings.HiddenLayerNeuronsCount.ToString());
+
+        var properties = typeof(NeuralNetworkInputLengths)
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var property in properties)
+        {
+            sb
+                .Append("# ")
+                .Append(property.Name)
+                .Append(" = ")
+                .AppendLine(property.GetValue(neuralNetworkSettings.InputLengths)!.ToString());
+        }
+
+        return sb
             .AppendLine()
             .ToString();
     }

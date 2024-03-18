@@ -1,4 +1,6 @@
-﻿namespace CryptoLooser.Cli;
+﻿using CryptoLooser.Core.NeuralNetwork;
+
+namespace CryptoLooser.Cli;
 
 internal class NeuralNetworkSettings
 {
@@ -6,5 +8,5 @@ internal class NeuralNetworkSettings
 
     public required int HiddenLayerNeuronsCount { get; init; }
 
-    public required int SeriesSize { get; init; }
+    public required NeuralNetworkInputLengths InputLengths { get; init; }
 }

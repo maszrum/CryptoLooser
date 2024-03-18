@@ -38,7 +38,7 @@ internal class SimulateCommand : Command
         var simulation = new MarketSimulation(
             marketData.ToImmutableArray(),
             parseOutput.HiddenLayerNeuronsCount,
-            parseOutput.SeriesSize);
+            parseOutput.InputLengths);
 
         var startingBalance = 1000.0d.AsUsdt();
         var simulationOutput = simulation.Simulate(parseOutput.Genes.Span, startingBalance);

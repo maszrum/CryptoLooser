@@ -1,6 +1,8 @@
-﻿namespace CryptoLooser.Core.Parsing;
+﻿using CryptoLooser.Core.NeuralNetwork;
+
+namespace CryptoLooser.Core.Parsing;
 
 public readonly record struct ChromosomeParsingOutput(
     int HiddenLayerNeuronsCount,
-    int SeriesSize,
+    NeuralNetworkInputLengths InputLengths,
     ReadOnlyMemory<double> Genes);

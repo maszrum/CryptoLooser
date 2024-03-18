@@ -8,22 +8,22 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
 {
     private readonly ImmutableArray<MarketDataRow> _marketData;
     private readonly ProfitLossCalculator _profitLossCalculator = new();
+    private readonly NeuralNetworkInputLengths _inputLengths;
     private readonly int _neuralNetworkInputValuesCount;
     private readonly int _neuralNetworkHiddenLayerNeuronsCount;
-    private readonly int _neuralNetworkSeriesSize;
     private readonly int _neuralNetworkWeightsCount;
     private readonly int _neuralNetworkBiasesCount;
 
     public MarketSimulation(
         ImmutableArray<MarketDataRow> marketData,
         int neuralNetworkHiddenLayerNeuronsCount,
-        int neuralNetworkSeriesSize)
+        NeuralNetworkInputLengths inputLengths)
     {
         _marketData = marketData;
         _neuralNetworkHiddenLayerNeuronsCount = neuralNetworkHiddenLayerNeuronsCount;
-        _neuralNetworkSeriesSize = neuralNetworkSeriesSize;
+        _inputLengths = inputLengths;
 
-        _neuralNetworkInputValuesCount = NormalizedNeuralNetworkInput.GetValuesCount(_neuralNetworkSeriesSize);
+        _neuralNetworkInputValuesCount = inputLengths.Sum();
 
         _neuralNetworkWeightsCount = MarketNeuralNetwork.GetWeightsCount(
             _neuralNetworkInputValuesCount,
@@ -46,7 +46,7 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
             weights: neuralNetworkParameters.Slice(0, _neuralNetworkWeightsCount),
             biases: neuralNetworkParameters.Slice(_neuralNetworkWeightsCount, _neuralNetworkBiasesCount));
 
-        var collector = new MarketDataCollector(_neuralNetworkSeriesSize);
+        var collector = new MarketDataCollector(_inputLengths);
 
         var predictionMaker = new PredictionMaker(
             (Math.Min(neuralNetworkParameters[^1], neuralNetworkParameters[^2]) + 1.0d) / 2.0d,

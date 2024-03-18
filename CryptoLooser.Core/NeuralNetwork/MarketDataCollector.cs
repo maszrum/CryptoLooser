@@ -1,18 +1,18 @@
 ﻿namespace CryptoLooser.Core.NeuralNetwork;
 
-public class MarketDataCollector(int seriesSize)
+public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
 {
-    private readonly CircularBuffer<double> _closePrices = new(seriesSize);
-    private readonly CircularBuffer<double> _priceDifferences = new(seriesSize);
-    private readonly CircularBuffer<double> _candlestickHeights = new(seriesSize);
-    private readonly CircularBuffer<double> _volumes = new(seriesSize);
-    private readonly CircularBuffer<double> _tradesCount = new(seriesSize);
+    private readonly CircularBuffer<double> _closePrices = new(inputLengths.ClosePrice);
+    private readonly CircularBuffer<double> _priceDifferences = new(inputLengths.PriceDifference);
+    private readonly CircularBuffer<double> _candlestickHeights = new(inputLengths.CandlestickHeight);
+    private readonly CircularBuffer<double> _volumes = new(inputLengths.Volume);
+    private readonly CircularBuffer<double> _tradesCount = new(inputLengths.TradesCount);
 
-    private readonly double[] _normalizedClosePrices = new double[seriesSize];
-    private readonly double[] _normalizedPriceDifferences = new double[seriesSize];
-    private readonly double[] _normalizedCandlestickHeights = new double[seriesSize];
-    private readonly double[] _normalizedVolumes = new double[seriesSize];
-    private readonly double[] _normalizedTradesCount = new double[seriesSize];
+    private readonly double[] _normalizedClosePrices = new double[inputLengths.ClosePrice];
+    private readonly double[] _normalizedPriceDifferences = new double[inputLengths.PriceDifference];
+    private readonly double[] _normalizedCandlestickHeights = new double[inputLengths.CandlestickHeight];
+    private readonly double[] _normalizedVolumes = new double[inputLengths.Volume];
+    private readonly double[] _normalizedTradesCount = new double[inputLengths.TradesCount];
 
     public bool Feed(MarketDataRow marketData)
     {

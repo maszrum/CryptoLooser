@@ -20,7 +20,7 @@ var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configuration)
     .CreateLogger();
 
-var rootCommand = new RootCommand("Bunch of commands to lose money on cryptocurrency market.");
+var rootCommand = new RootCommand("Bunch of commands to loose money on cryptocurrency market.");
 
 rootCommand.AddCommand(new LearnCommand(logger, neuralNetworkSettings, geneticAlgorithmSettings));
 rootCommand.AddCommand(new SimulateCommand(logger));

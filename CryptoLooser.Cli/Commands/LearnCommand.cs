@@ -47,7 +47,7 @@ internal class LearnCommand : Command
         var marketSimulation = new MarketSimulation(
             marketData: marketData.ToImmutableArray(),
             neuralNetworkHiddenLayerNeuronsCount: _neuralNetworkSettings.HiddenLayerNeuronsCount,
-            neuralNetworkSeriesSize: _neuralNetworkSettings.SeriesSize);
+            inputLengths: _neuralNetworkSettings.InputLengths);
 
         var chromosomeFactory = new RandomChromosomeFactory(marketSimulation.RequiredChromosomeLength);
 

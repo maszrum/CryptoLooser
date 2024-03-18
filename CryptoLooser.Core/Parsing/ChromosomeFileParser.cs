@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Reflection;
+using CryptoLooser.Core.NeuralNetwork;
 
 namespace CryptoLooser.Core.Parsing;
 
@@ -10,7 +12,8 @@ public class ChromosomeFileParser
         var fileLines = await File.ReadAllLinesAsync(fileName);
         var genes = new double[fileLines.Length];
 
-        var output = new ChromosomeParsingOutput();
+        var inputLengths = new NeuralNetworkInputLengths(0, 0, 0, 0, 0);
+        var output = new ChromosomeParsingOutput {InputLengths = inputLengths};
 
         var genesCount = 0;
 
@@ -26,14 +29,26 @@ public class ChromosomeFileParser
                 {
                     output = output with {HiddenLayerNeuronsCount = hiddenLayerNeuronsCount};
                 }
-
-                if (TryExtractVariable(
-                        line: line,
-                        variableName: "SeriesSize",
-                        parseFunc: x => int.Parse(x, NumberStyles.None, CultureInfo.InvariantCulture),
-                        value: out var seriesSize))
+                else
                 {
-                    output = output with {SeriesSize = seriesSize};
+                    var foundTuple = typeof(NeuralNetworkInputLengths)
+                        .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                        .Select(property =>
+                        {
+                            var extracted = TryExtractVariable(
+                                line,
+                                property.Name,
+                                x => int.Parse(x, NumberStyles.None, CultureInfo.InvariantCulture),
+                                out var propertyValue);
+
+                            return (Property: property, Extracted: extracted, PropertyValue: propertyValue);
+                        })
+                        .SingleOrDefault(t => t.Extracted);
+
+                    if (foundTuple.Extracted)
+                    {
+                        foundTuple.Property.SetValue(inputLengths, foundTuple.PropertyValue);
+                    }
                 }
             }
             else

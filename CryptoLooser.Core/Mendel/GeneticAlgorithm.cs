@@ -65,11 +65,23 @@ public class GeneticAlgorithm<TState>
             _mutator.Mutate(newChromosome2);
         }
 
-        var fitness1 = _fitnessProvider.GetFitness(newChromosome1, out var state1);
-        var fitness2 = _fitnessProvider.GetFitness(newChromosome2, out var state2);
+        var task1 = Task.Run(() =>
+        {
+            var fitness = _fitnessProvider.GetFitness(newChromosome1, out var state);
+            return (fitness, state);
+        });
 
-        var newIndividual1 = new Individual<TState>(newChromosome1, fitness1, state1);
-        var newIndividual2 = new Individual<TState>(newChromosome2, fitness2, state2);
+
+        var task2 = Task.Run(() =>
+        {
+            var fitness = _fitnessProvider.GetFitness(newChromosome2, out var state);
+            return (fitness, state);
+        });
+
+        var taskResults = await Task.WhenAll(task1, task2);
+
+        var newIndividual1 = new Individual<TState>(newChromosome1, taskResults[0].Item1, taskResults[0].Item2);
+        var newIndividual2 = new Individual<TState>(newChromosome2, taskResults[1].Item1, taskResults[1].Item2);
 
         _population.Add(newIndividual1);
         _population.Add(newIndividual2);

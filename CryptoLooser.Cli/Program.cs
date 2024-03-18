@@ -21,6 +21,8 @@ var logger = new LoggerConfiguration()
     .CreateLogger();
 
 var rootCommand = new RootCommand("Bunch of commands to lose money on cryptocurrency market.");
+
 rootCommand.AddCommand(new LearnCommand(logger, neuralNetworkSettings, geneticAlgorithmSettings));
+rootCommand.AddCommand(new SimulateCommand(logger));
 
 await rootCommand.InvokeAsync(args);

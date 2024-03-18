@@ -1,4 +1,6 @@
-﻿namespace CryptoLooser.Core.NeuralNetwork;
+﻿using System.Reflection;
+
+namespace CryptoLooser.Core.NeuralNetwork;
 
 public readonly ref struct NormalizedNeuralNetworkInput(
     ReadOnlySpan<double> closePrice,
@@ -16,4 +18,14 @@ public readonly ref struct NormalizedNeuralNetworkInput(
     public ReadOnlySpan<double> Volume { get; } = volume;
 
     public ReadOnlySpan<double> TradesCount { get; } = tradesCount;
+
+    public static int GetValuesCount(int seriesCount) =>
+        seriesCount * GetPropertiesCount(typeof(NormalizedNeuralNetworkInput));
+
+    private static int GetPropertiesCount(Type type)
+    {
+        return type
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+            .Length;
+    }
 }

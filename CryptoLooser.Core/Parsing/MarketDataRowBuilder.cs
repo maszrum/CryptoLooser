@@ -104,7 +104,10 @@ internal class MarketDataRowBuilder
     }
 
     private static double ToDouble(ReadOnlySpan<char> input) =>
-        double.Parse(input, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+        double.Parse(
+            input,
+            NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+            CultureInfo.InvariantCulture);
 
     private static long ToLong(ReadOnlySpan<char> input) =>
         long.Parse(input, NumberStyles.None, CultureInfo.InvariantCulture);

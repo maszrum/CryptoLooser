@@ -1,6 +1,6 @@
 ﻿namespace CryptoLooser.Core.Units;
 
-internal static class DoubleExtensions
+public static class DoubleExtensions
 {
     public static Crypto AsCrypto(this double value) => new(value);
 

@@ -1,6 +1,6 @@
 ﻿namespace CryptoLooser.Core.NeuralNetwork;
 
-internal class MarketDataCollector(int seriesSize)
+public class MarketDataCollector(int seriesSize)
 {
     private readonly CircularBuffer<double> _closePrices = new(seriesSize);
     private readonly CircularBuffer<double> _priceDifferences = new(seriesSize);
@@ -63,6 +63,7 @@ internal class MarketDataCollector(int seriesSize)
         }
     }
 
+    // ReSharper disable once UnusedMember.Local
     private static void NormalizeSingleSeriesWithCommonMinMax(
         CircularBuffer<double> source,
         double[] destination,

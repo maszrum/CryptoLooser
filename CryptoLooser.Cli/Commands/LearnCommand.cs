@@ -2,7 +2,6 @@
 using System.CommandLine;
 using CryptoLooser.Core;
 using CryptoLooser.Core.Mendel;
-using CryptoLooser.Core.Parsing;
 using Serilog;
 
 namespace CryptoLooser.Cli.Commands;
@@ -31,20 +30,10 @@ internal class LearnCommand : Command
 
     private async Task Handle(CancellationToken cancellationToken)
     {
-        var marketFilesLocation = Path.Combine("market-data", "ethusdt");
-
-        _logger.Information(
-            "Reading and parsing market data files from location: {MarketFilesLocation}",
-            marketFilesLocation);
-
-        var parser = BinanceMarketDataFileParser.Create("ETHUSDT", marketFilesLocation);
-
         MarketDataRow[] marketData;
         try
         {
-            marketData = await parser
-                .GetMarketData(cancellationToken)
-                .ToArrayAsync(cancellationToken);
+            marketData = await CommandHelpers.LoadMarketData(_logger, cancellationToken);
         }
         catch (OperationCanceledException)
         {
@@ -72,7 +61,7 @@ internal class LearnCommand : Command
             "Creating initial population with number of {IndividualsCount} individuals.",
             geneticAlgorithmParams.PopulationSize);
 
-        var geneticAlgorithm = new GeneticAlgorithm<IndividualState>(
+        var geneticAlgorithm = new GeneticAlgorithm<MarketSimulationOutput>(
             geneticAlgorithmParams,
             chromosomeFactory: chromosomeFactory,
             mutator: new RandomMutator(

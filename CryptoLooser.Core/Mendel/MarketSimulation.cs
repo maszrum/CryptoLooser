@@ -1,11 +1,10 @@
 ﻿using System.Collections.Immutable;
-using System.Reflection;
 using CryptoLooser.Core.NeuralNetwork;
 using CryptoLooser.Core.Units;
 
 namespace CryptoLooser.Core.Mendel;
 
-public class MarketSimulation : IFitnessProvider<IndividualState>
+public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
 {
     private readonly ImmutableArray<MarketDataRow> _marketData;
     private readonly ProfitLossCalculator _profitLossCalculator = new();
@@ -24,9 +23,7 @@ public class MarketSimulation : IFitnessProvider<IndividualState>
         _neuralNetworkHiddenLayerNeuronsCount = neuralNetworkHiddenLayerNeuronsCount;
         _neuralNetworkSeriesSize = neuralNetworkSeriesSize;
 
-        _neuralNetworkInputValuesCount =
-            GetPropertiesCount(typeof(NormalizedNeuralNetworkInput)) *
-            _neuralNetworkSeriesSize;
+        _neuralNetworkInputValuesCount = NormalizedNeuralNetworkInput.GetValuesCount(_neuralNetworkSeriesSize);
 
         _neuralNetworkWeightsCount = MarketNeuralNetwork.GetWeightsCount(
             _neuralNetworkInputValuesCount,
@@ -41,19 +38,19 @@ public class MarketSimulation : IFitnessProvider<IndividualState>
 
     public int RequiredChromosomeLength { get; }
 
-    public double GetFitness(ReadOnlySpan<double> chromosome, out IndividualState state)
+    public MarketSimulationOutput Simulate(ReadOnlySpan<double> neuralNetworkParameters, Usdt startingBalance)
     {
         var network = new MarketNeuralNetwork(
             inputsCount: _neuralNetworkInputValuesCount,
             hiddenLayerNeuronsCount: _neuralNetworkHiddenLayerNeuronsCount,
-            weights: chromosome.Slice(0, _neuralNetworkWeightsCount),
-            biases: chromosome.Slice(_neuralNetworkWeightsCount, _neuralNetworkBiasesCount));
+            weights: neuralNetworkParameters.Slice(0, _neuralNetworkWeightsCount),
+            biases: neuralNetworkParameters.Slice(_neuralNetworkWeightsCount, _neuralNetworkBiasesCount));
 
         var collector = new MarketDataCollector(_neuralNetworkSeriesSize);
 
         var predictionMaker = new PredictionMaker(
-            (Math.Min(chromosome[^1], chromosome[^2]) + 1.0d) / 2.0d,
-            (Math.Max(chromosome[^1], chromosome[^2]) + 1.0d) / 2.0d);
+            (Math.Min(neuralNetworkParameters[^1], neuralNetworkParameters[^2]) + 1.0d) / 2.0d,
+            (Math.Max(neuralNetworkParameters[^1], neuralNetworkParameters[^2]) + 1.0d) / 2.0d);
 
         var decisionMaker = new DecisionMaker();
 
@@ -82,19 +79,61 @@ public class MarketSimulation : IFitnessProvider<IndividualState>
         var decisionsArray = decisions.ToImmutable();
 
         var profit = _profitLossCalculator.Calculate(
-            startingBalance: 1000.0d.AsUsdt(),
+            startingBalance: startingBalance,
             decisions: decisionsArray.AsSpan(),
             finalPrice: _marketData[^1].ClosePrice.AsUsdt());
 
-        state = new IndividualState(profit, decisionsArray);
-
-        return profit + 3 * Math.Sqrt(decisionsArray.Length);
+        return new MarketSimulationOutput(profit, decisionsArray);
     }
 
-    private static int GetPropertiesCount(Type type)
+    public MarketSimulationOutput SimulateJustHold(Usdt startingBalance)
     {
-        return type
-            .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-            .Length;
+        var decision = new TradeDecision(DecisionKind.Buy, _marketData[0].ClosePrice.AsUsdt());
+        var decisions = ImmutableArray.Create(decision);
+
+        var profit = _profitLossCalculator.Calculate(
+            startingBalance: startingBalance,
+            decisions: decisions.AsSpan(),
+            finalPrice: _marketData[^1].ClosePrice.AsUsdt());
+
+        return new MarketSimulationOutput(profit, decisions);
+    }
+
+    public MarketSimulationOutput SimulateBestPossible(Usdt startingBalance)
+    {
+        var decisions = ImmutableArray.CreateBuilder<TradeDecision>();
+        var previousDecision = DecisionKind.Sell;
+
+        for (var i = 1; i < _marketData.Length; i++)
+        {
+            var current = _marketData[i - 1];
+            var next = _marketData[i];
+
+            var decisionKind = current.ClosePrice < next.ClosePrice ? DecisionKind.Buy : DecisionKind.Sell;
+
+            if (previousDecision != decisionKind)
+            {
+                decisions.Add(new TradeDecision(decisionKind, current.ClosePrice.AsUsdt()));
+                previousDecision = decisionKind;
+            }
+        }
+
+        var decisionsArray = decisions.ToImmutable();
+
+        var profit = _profitLossCalculator.Calculate(
+            startingBalance: startingBalance,
+            decisions: decisionsArray.AsSpan(),
+            finalPrice: _marketData[^1].ClosePrice.AsUsdt());
+
+        return new MarketSimulationOutput(profit, decisionsArray);
+    }
+
+    public double GetFitness(ReadOnlySpan<double> chromosome, out MarketSimulationOutput state)
+    {
+        var simulationOutput = Simulate(chromosome, 1000.0d.AsUsdt());
+
+        state = simulationOutput;
+
+        return simulationOutput.Profit + (3 * Math.Sqrt(simulationOutput.Decisions.Length));
     }
 }

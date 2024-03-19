@@ -5,7 +5,7 @@ internal class CircularBuffer<T>(int size) where T : struct
     private readonly T[] _buffer = new T[size];
     private int _position = size - 1;
 
-    public bool IsFull { get; private set; }
+    public bool IsFull { get; private set; } = size == 0;
 
     public void Append(T value)
     {

@@ -22,7 +22,7 @@ internal class Neuron(ImmutableArray<double> weights, double bias)
         if (inputs.Length == 1)
         {
             var fastSum = (inputs[0] * _weights[0]) + _bias;
-            return Sigmoid(fastSum);
+            return ActivationFunction(fastSum);
         }
 
         var vectorSize = Vector<double>.Count;
@@ -50,8 +50,8 @@ internal class Neuron(ImmutableArray<double> weights, double bias)
             sum += _weights[i] * inputs[i];
         }
 
-        return Sigmoid(sum);
+        return ActivationFunction(sum);
     }
 
-    private static double Sigmoid(double x) => 1.0d / (1.0d + Math.Exp(-x));
+    private static double ActivationFunction(double x) => Math.Tanh(x);
 }

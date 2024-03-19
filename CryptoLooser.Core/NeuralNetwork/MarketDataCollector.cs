@@ -14,6 +14,8 @@ public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
     private readonly double[] _normalizedVolumes = new double[inputLengths.Volume];
     private readonly double[] _normalizedTradesCount = new double[inputLengths.TradesCount];
 
+    private bool _isFull;
+
     public bool Feed(MarketDataRow marketData)
     {
         _closePrices.Append(marketData.ClosePrice);
@@ -22,7 +24,17 @@ public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
         _volumes.Append(marketData.Volume);
         _tradesCount.Append(marketData.TradesCount);
 
-        if (_closePrices.IsFull)
+        if (!_isFull)
+        {
+            _isFull =
+                _closePrices.IsFull &&
+                _priceDifferences.IsFull &&
+                _candlestickHeights.IsFull &&
+                _volumes.IsFull &&
+                _tradesCount.IsFull;
+        }
+
+        if (_isFull)
         {
             NormalizeValues();
         }

@@ -125,7 +125,8 @@ internal class LearnCommand : Command
                     generationsPerSecond);
             });
 
-        var counterTask = performanceCounter.Start(cancellationToken);
+        var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        var counterTask = performanceCounter.Start(cts.Token);
 
         _logger.Information("Starting iterating through generations...");
 
@@ -137,7 +138,8 @@ internal class LearnCommand : Command
             performanceCounter.Increment();
         }
 
-        await counterTask;
+        await cts.CancelAsync();
 
+        await counterTask;
     }
 }

@@ -13,6 +13,7 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
     private readonly int _neuralNetworkHiddenLayerNeuronsCount;
     private readonly int _neuralNetworkWeightsCount;
     private readonly int _neuralNetworkBiasesCount;
+    private readonly double _profitManyDecisionsFactor;
 
     public MarketSimulation(
         ImmutableArray<MarketDataRow> marketData,
@@ -22,6 +23,7 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
         _marketData = marketData;
         _neuralNetworkHiddenLayerNeuronsCount = neuralNetworkHiddenLayerNeuronsCount;
         _inputLengths = inputLengths;
+        _profitManyDecisionsFactor = 1_000.0d / marketData.Length;
 
         _neuralNetworkInputValuesCount = inputLengths.Sum();
 
@@ -49,8 +51,8 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
         var collector = new MarketDataCollector(_inputLengths);
 
         var predictionMaker = new PredictionMaker(
-            (Math.Min(neuralNetworkParameters[^1], neuralNetworkParameters[^2]) + 1.0d) / 2.0d,
-            (Math.Max(neuralNetworkParameters[^1], neuralNetworkParameters[^2]) + 1.0d) / 2.0d);
+            Math.Min(neuralNetworkParameters[^1], neuralNetworkParameters[^2]),
+            Math.Max(neuralNetworkParameters[^1], neuralNetworkParameters[^2]));
 
         var decisionMaker = new DecisionMaker();
 
@@ -134,6 +136,8 @@ public class MarketSimulation : IFitnessProvider<MarketSimulationOutput>
 
         state = simulationOutput;
 
-        return simulationOutput.Profit + (3 * Math.Sqrt(simulationOutput.Decisions.Length));
+        return simulationOutput.Decisions.Length == 1
+            ? simulationOutput.Profit + _profitManyDecisionsFactor
+            : simulationOutput.Profit + (_profitManyDecisionsFactor * Math.Sqrt(simulationOutput.Decisions.Length));
     }
 }

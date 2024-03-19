@@ -56,7 +56,7 @@ internal class ChromosomeExporter(
     private static string FormatChromosome(IEnumerable<double> genes)
     {
         var genesFormatted = genes
-            .Select(gene => gene.ToString(CultureInfo.InvariantCulture));
+            .Select(gene => gene.ToString("F", CultureInfo.InvariantCulture));
 
         var chromosomeFormatted = string.Join(Environment.NewLine, genesFormatted);
 

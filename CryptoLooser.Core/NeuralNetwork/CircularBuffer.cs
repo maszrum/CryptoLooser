@@ -9,6 +9,11 @@ internal class CircularBuffer<T>(int size) where T : struct
 
     public void Append(T value)
     {
+        if (_buffer.Length == 0)
+        {
+            return;
+        }
+
         _buffer[_position] = value;
         _position--;
 
@@ -21,6 +26,11 @@ internal class CircularBuffer<T>(int size) where T : struct
 
     public void CopyTo(Span<T> destination)
     {
+        if (_buffer.Length == 0)
+        {
+            return;
+        }
+
         var lastWrotePosition = _position + 1;
         lastWrotePosition = lastWrotePosition == _buffer.Length ? 0 : lastWrotePosition;
 

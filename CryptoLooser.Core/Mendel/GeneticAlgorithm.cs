@@ -55,25 +55,24 @@ public class GeneticAlgorithm<TState>
 
         var (newChromosome1, newChromosome2) = Crossover(firstMax.Chromosome, secondMax.Chromosome);
 
-        if (_mutator.SpinTheWheel(newChromosome1))
-        {
-            _mutator.Mutate(newChromosome1);
-        }
-
-        if (_mutator.SpinTheWheel(newChromosome2))
-        {
-            _mutator.Mutate(newChromosome2);
-        }
-
         var task1 = Task.Run(() =>
         {
+            if (_mutator.SpinTheWheel(newChromosome1))
+            {
+                _mutator.Mutate(newChromosome1);
+            }
+
             var fitness = _fitnessProvider.GetFitness(newChromosome1, out var state);
             return (fitness, state);
         });
 
-
         var task2 = Task.Run(() =>
         {
+            if (_mutator.SpinTheWheel(newChromosome2))
+            {
+                _mutator.Mutate(newChromosome2);
+            }
+
             var fitness = _fitnessProvider.GetFitness(newChromosome2, out var state);
             return (fitness, state);
         });

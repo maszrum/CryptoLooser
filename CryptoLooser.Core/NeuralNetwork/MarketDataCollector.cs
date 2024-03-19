@@ -51,6 +51,11 @@ public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
 
     private static void NormalizeSingleSeries(CircularBuffer<double> source, double[] destination)
     {
+        if (destination.Length == 0)
+        {
+            return;
+        }
+
         source.CopyTo(destination);
         var maxValue = destination.Max();
         var minValue = destination.Min();
@@ -70,6 +75,11 @@ public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
         double minValue,
         double maxValue)
     {
+        if (destination.Length == 0)
+        {
+            return;
+        }
+
         source.CopyTo(destination);
         var diff = maxValue - minValue;
 
@@ -82,6 +92,11 @@ public class MarketDataCollector(NeuralNetworkInputLengths inputLengths)
 
     private static void NormalizeDifference(CircularBuffer<double> source, double[] destination)
     {
+        if (destination.Length == 0)
+        {
+            return;
+        }
+
         source.CopyTo(destination);
         var maxAbs = Math.Abs(destination.MaxBy(Math.Abs));
 

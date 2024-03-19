@@ -9,7 +9,7 @@ public readonly struct Usdt(double value)
 
     public double Value { get; } = value;
 
-    public override string ToString() => $"{Value} USDT";
+    public override string ToString() => $"{Value:F2} USDT";
 
     public static implicit operator double(Usdt amount) => amount.Value;
 }

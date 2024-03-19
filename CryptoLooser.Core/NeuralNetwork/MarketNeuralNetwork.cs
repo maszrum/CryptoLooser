@@ -97,7 +97,7 @@ internal class MarketNeuralNetwork
         var hiddenLayerOutputs = HiddenLayer.CalculateOutputs(inputLayerOutputs, chunkInput: false);
         var outputLayerOutputs = OutputLayer.CalculateOutputs(hiddenLayerOutputs, chunkInput: false);
 
-        return outputLayerOutputs[0];
+        return outputLayerOutputs.Span[0];
     }
 
     public static int GetWeightsCount(int inputsCount, int hiddenLayerNeuronsCount)

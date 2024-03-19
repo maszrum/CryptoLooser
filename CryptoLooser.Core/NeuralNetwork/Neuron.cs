@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Numerics;
 
 namespace CryptoLooser.Core.NeuralNetwork;
 
@@ -18,14 +19,36 @@ internal class Neuron(ImmutableArray<double> weights, double bias)
                 nameof(inputs));
         }
 
-        var sum = 0.0d;
-
-        for (var i = 0; i < _weights.Length; i++)
+        if (inputs.Length == 1)
         {
-            sum += inputs[i] * _weights[i];
+            var fastSum = (inputs[0] * _weights[0]) + _bias;
+            return Sigmoid(fastSum);
         }
 
-        sum += _bias;
+        var vectorSize = Vector<double>.Count;
+        var vectorCount = inputs.Length / vectorSize;
+        var weightsSpan = _weights.AsSpan();
+
+        var sum = _bias;
+
+        for (var i = 0; i < vectorCount; i++)
+        {
+            var sliceFromIndex = i * vectorSize;
+
+            var inputsSlice = inputs.Slice(sliceFromIndex, vectorSize);
+            var weightsSlice = weightsSpan.Slice(sliceFromIndex, vectorSize);
+
+            var inputsVector = new Vector<double>(inputsSlice);
+            var weightsVector = new Vector<double>(weightsSlice);
+
+            var sumVector = Vector.Multiply(inputsVector, weightsVector);
+            sum += Vector.Sum(sumVector);
+        }
+
+        for (var i = vectorSize * vectorCount; i < inputs.Length; i++)
+        {
+            sum += _weights[i] * inputs[i];
+        }
 
         return Sigmoid(sum);
     }

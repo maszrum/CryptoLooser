@@ -25,15 +25,28 @@ internal class LearnCommand : Command
         _neuralNetworkSettings = neuralNetworkSettings;
         _geneticAlgorithmSettings = geneticAlgorithmSettings;
 
-        this.SetHandler(context => Handle(context.GetCancellationToken()));
+        var marketDataDirectoryArgument = new Argument<string>(
+            name: "market-data-dir",
+            description: "Directory name containing market data.");
+
+        AddArgument(marketDataDirectoryArgument);
+
+        this.SetHandler(context =>
+        {
+            var marketDataDirectory = context.ParseResult.GetValueForArgument(marketDataDirectoryArgument);
+            return Handle(marketDataDirectory, context.GetCancellationToken());
+        });
     }
 
-    private async Task Handle(CancellationToken cancellationToken)
+    private async Task Handle(string marketDataDirectory, CancellationToken cancellationToken)
     {
         MarketDataRow[] marketData;
         try
         {
-            marketData = await CommandHelpers.LoadMarketData(_logger, cancellationToken);
+            marketData = await CommandHelpers.LoadMarketData(
+                marketDataDirectory,
+                _logger,
+                cancellationToken);
         }
         catch (OperationCanceledException)
         {

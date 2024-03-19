@@ -6,9 +6,12 @@ namespace CryptoLooser.Cli.Commands;
 
 internal static class CommandHelpers
 {
-    public static async Task<MarketDataRow[]> LoadMarketData(ILogger logger, CancellationToken cancellationToken)
+    public static async Task<MarketDataRow[]> LoadMarketData(
+        string dataDirectory,
+        ILogger logger,
+        CancellationToken cancellationToken)
     {
-        var marketFilesLocation = Path.Combine("market-data", "ethusdt");
+        var marketFilesLocation = Path.Combine("market-data", dataDirectory);
 
         logger.Information(
             "Reading and parsing market data files from location: {MarketFilesLocation}",

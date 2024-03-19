@@ -24,52 +24,76 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-03.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-03.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-07.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-07.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-04.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-04.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-08.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-08.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-05.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-05.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-09.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-09.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-06.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-06.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-10.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-10.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-07.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-07.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-11.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-11.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-08.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-08.zip</Link>
+    <Content Include="..\market-data\ethusdt-15m\ETHUSDT-15m-2023-12.zip">
+      <Link>market-data\ethusdt-15m\ETHUSDT-15m-2023-12.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-09.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-09.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-03.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-03.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-10.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-10.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-04.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-04.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-11.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-11.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-05.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-05.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2023-12.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2023-12.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-06.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-06.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2024-01.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2024-01.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-07.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-07.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\market-data\ethusdt\ETHUSDT-1h-2024-02.zip">
-      <Link>market-data\ethusdt\ETHUSDT-1h-2024-02.zip</Link>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-08.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-08.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-09.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-09.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-10.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-10.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-11.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-11.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2023-12.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2023-12.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2024-01.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2024-01.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\market-data\ethusdt-1h\ETHUSDT-1h-2024-02.zip">
+      <Link>market-data\ethusdt-1h\ETHUSDT-1h-2024-02.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

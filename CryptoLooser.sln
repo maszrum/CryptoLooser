@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLooser.Core.UnitTests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "market-data", "market-data", "{A3D107E1-126E-4815-9DB4-22EB9EAEAF5B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ethusdt", "ethusdt", "{36478D24-0020-43B6-B595-70C36A94403A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ethusdt-1h", "ethusdt-1h", "{36478D24-0020-43B6-B595-70C36A94403A}"
 	ProjectSection(SolutionItems) = preProject
 		market-data\ethusdt\ETHUSDT-1h-2023-03.zip = market-data\ethusdt\ETHUSDT-1h-2023-03.zip
 		market-data\ethusdt\ETHUSDT-1h-2023-04.zip = market-data\ethusdt\ETHUSDT-1h-2023-04.zip
@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".", ".", "{751B4BD9-45F8-4A
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ethusdt-15m", "ethusdt-15m", "{08AB7374-28E0-413F-890A-F77A5E2EEAC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{36478D24-0020-43B6-B595-70C36A94403A} = {A3D107E1-126E-4815-9DB4-22EB9EAEAF5B}
+		{08AB7374-28E0-413F-890A-F77A5E2EEAC6} = {A3D107E1-126E-4815-9DB4-22EB9EAEAF5B}
 	EndGlobalSection
 EndGlobal

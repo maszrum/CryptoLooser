@@ -20,20 +20,32 @@ internal class SimulateCommand : Command
     {
         _logger = logger;
 
+        var marketDataDirectoryArgument = new Argument<string>(
+            name: "market-data-dir",
+            description: "Directory name containing market data.");
+
+        AddArgument(marketDataDirectoryArgument);
+
         var chromosomeArgument = new Argument<string>(
             name: "chromosome-input-name",
             description: "File name containing neural network parameters.");
 
         AddArgument(chromosomeArgument);
 
-        this.SetHandler(Handle, chromosomeArgument);
+        this.SetHandler(
+            Handle,
+            marketDataDirectoryArgument,
+            chromosomeArgument);
     }
 
-    private async Task Handle(string chromosomeFileName)
+    private async Task Handle(string marketDataDirectory, string chromosomeFileName)
     {
         var parseOutput = await new ChromosomeFileParser().Parse(chromosomeFileName);
 
-        var marketData = await CommandHelpers.LoadMarketData(_logger, CancellationToken.None);
+        var marketData = await CommandHelpers.LoadMarketData(
+            marketDataDirectory,
+            _logger,
+            CancellationToken.None);
 
         var simulation = new MarketSimulation(
             marketData.ToImmutableArray(),
